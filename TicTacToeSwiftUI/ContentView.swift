@@ -14,6 +14,16 @@ struct ContentView: View {
     var body: some View
     {
         let borderSize = CGFloat(5)
+        Text(gameState.turnText())
+            .font(.title)
+            .bold()
+            .padding()
+        Spacer()
+        
+        Text(String(format: "Crosses: %d", gameState.crossesScore))
+            .font(.title)
+            .bold()
+            .padding()
         
         VStack(spacing: borderSize)
         {
@@ -44,13 +54,20 @@ struct ContentView: View {
         }
         .background(Color.black)
         .padding()
-        .alert(isPresented: $gameState.showAlert){
+        .alert(isPresented: $gameState.showAlert)
+        {
             Alert(title: Text(gameState.alertMessage),
                   dismissButton: .default(Text("Okay")){
                 gameState.resetBoard()
             }
             )
         }
+        
+        Text(String(format: "Noughts: %d", gameState.noughtsScore))
+            .font(.title)
+            .bold()
+            .padding()
+        Spacer()
     }
 }
 
